@@ -9,7 +9,7 @@ int main() {
   char filename[size];
   string receive;
   vector <char> ways;
-  string kword="switch case else if auto break char const continue default do double enum extern float for goto int long register return short signed sizeof	static struct typedef union unsigned void volatile while"; 
+  string kword="switch case else if auto break char const continue default do double enum extern float for goto int long register return short signed sizeof static struct typedef union unsigned void volatile while"; 
   //task1的目的是算出keyword的数量和switch，case的数量
   fstream infile;
   cout << "Enter the file's name:\n";
@@ -28,10 +28,11 @@ int main() {
       	  if(back<kword.size()&&(receive[i]==NULL||receive[i]=='('||receive[i]=='{'||receive[i]==';'||receive[i]==':')){
       	  	total++; 
             //如果代码中有符合keyword的词则total+1
-      	  	if(back==0) ways.push_back('A');
-      	  	else if(back==7) ways.push_back('B');
+      	  	if(back==0) ways.push_back('S');
+      	  	else if(back==7) ways.push_back('C');
       	  	break;
 			}
+		//所处keyword表的位置判定是否是switch和case，是switch插入S。
 		  }
         infile >> receive;
         }
