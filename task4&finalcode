@@ -107,6 +107,5 @@ int main() {
       if(level==3) cout<<"if-else num: "<<if_elsenum;
       else 	cout<<"if-else num: "<<if_elsenum<<endl<<"if-elseif-else num: "<<else_ifnum;
 	    }
-	  }
   return 0;
 }
