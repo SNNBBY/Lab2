@@ -12,7 +12,7 @@ int main() {
   string receive;
   vector <char> ef;
   string search[5]={"else if","else ","else{","if(","if "};
-  //判断else和if
+  //判断else、if和else-if情况
   fstream infile,myfile;
   cout << "Please enter the file's name:\n";
   cin.getline(filename, size);
