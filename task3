@@ -1,0 +1,79 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <cstdlib>
+#include <vector>
+using namespace std;
+int main() {
+  int size=60,level,total=0,back,switchnum=0,j,k=0,casenum[50];
+  int if_elsenum=0,else_ifnum=0,flag1=0,flag2=0,position;
+  string last,now;
+  char filename[size];
+  string receive;
+  vector <char> ef;
+  string search[5]={"else if","else ","else{","if(","if "};
+  //判断else和if
+  fstream infile,myfile;
+  cout << "Please enter the file's name:\n";
+  cin.getline(filename, size);
+  cout << "Level(max is 3):\n";
+  cin >> level;
+  infile.open(filename);
+  myfile.open(filename); 
+  if (!infile.is_open()) {
+        cout << "Could not find the file\n";
+        cout << "Program terminating\n";
+        exit(EXIT_FAILURE);
+    }
+	if(level>=2){
+	  cout<<"switch num: "<<switchnum<<endl<< "case num:" ;
+      for(j=0;j<=k;j++)
+        cout<<' '<<casenum[j];
+      if(level>=3){
+      	cout<<endl;		 
+	    ef.erase(ef.begin(),ef.end());
+	    while(getline(myfile,receive)){
+          for(j=0;j<5;j++){
+          	position=receive.find(search[j]);
+          	if(position!=-1){
+          	  if(j==0) {
+          	  	ef.push_back('C');
+          	  	break;
+				}
+          	  else if(j==1||j==2){
+          	  	ef.push_back('B');
+          	  	break;
+				} 
+          	  else {
+          	  	ef.push_back('A');
+          	  	break;
+				}
+			  }
+		  } 
+	    for(i=0;i<ef.size();i++){
+	      if(ef[i]=='A') 
+	        flag1++;
+	      else if(ef[i]=='B'){
+	      	if(flag2==0&&flag1>0) {
+	      	  flag1--;
+	      	  if_elsenum++;
+			  }
+			  else if(flag2>0){
+			  	flag2--;
+			  	else_ifnum++;
+			  }
+		    }
+		else {
+			if(ef[i-1]!='C'){
+				flag1--;
+				if(flag1<0) flag1=0;
+				flag2++;
+				
+			  }
+		    }
+		  }
+      if(level==3) cout<<"if-else num: "<<if_elsenum;
+	    }
+	  }
+  return 0;
+}
